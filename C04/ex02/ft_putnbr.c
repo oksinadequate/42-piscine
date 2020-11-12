@@ -5,31 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: omalishe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/10 15:26:48 by omalishe          #+#    #+#             */
-/*   Updated: 2020/11/10 15:27:05 by omalishe         ###   ########.fr       */
+/*   Created: 2020/11/12 16:25:16 by omalishe          #+#    #+#             */
+/*   Updated: 2020/11/12 16:26:15 by omalishe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
 void	ft_putnbr(int nb)
 {
-	long int ch;
+	unsigned int nbr_unsigned;
 
 	if (nb < 0)
 	{
-		write(1, "-", 1);
-		ft_putnbr(-(nb / 10));
-		ch = 48 - nb % 10;
-	}
-	else if (nb > 9)
-	{
-		ft_putnbr(nb / 10);
-		ch = nb % 10 + 48;
+		nbr_unsigned = (unsigned int)(-1 * nb);
+		ft_putchar('-');
 	}
 	else
+		nbr_unsigned = (unsigned int)nb;
+	if (nbr_unsigned >= 10)
 	{
-		ch = nb + 48;
+		ft_putnbr(nbr_unsigned / 10);
+		ft_putnbr(nbr_unsigned % 10);
 	}
-	write(1, &ch, 4);
+	else
+		ft_putchar(nbr_unsigned + '0');
 }

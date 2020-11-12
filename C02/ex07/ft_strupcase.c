@@ -5,32 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: omalishe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/05 16:41:55 by omalishe          #+#    #+#             */
-/*   Updated: 2020/11/09 18:51:47 by omalishe         ###   ########.fr       */
+/*   Created: 2020/11/10 16:03:25 by omalishe          #+#    #+#             */
+/*   Updated: 2020/11/10 16:03:29 by omalishe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		is_lowercase(char a)
+char	*ft_strupcase(char *str)
 {
-	if (a >= 'a' && a <= 'z')
-	{
-		return (1);
-	}
-	return (0);
-}
+	char *ptr;
 
-int		*ft_strupcase(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
+	ptr = str;
+	while (*ptr != 0)
 	{
-		if (is_lowercase(str[i]))
+		if (*ptr >= 'a' && *ptr <= 'z')
 		{
-			str[i] = str[i] - 32;
+			*ptr -= 32;
 		}
-		i++;
+		ptr++;
 	}
 	return (str);
 }

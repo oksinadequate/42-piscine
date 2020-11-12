@@ -5,43 +5,44 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: omalishe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/05 19:06:38 by omalishe          #+#    #+#             */
-/*   Updated: 2020/11/09 18:55:36 by omalishe         ###   ########.fr       */
+/*   Created: 2020/11/10 16:15:00 by omalishe          #+#    #+#             */
+/*   Updated: 2020/11/10 16:15:08 by omalishe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		capitalize(char a)
+int		capitalize(char c)
 {
-	if (a < '0')
+	if (c < '0')
 		return (0);
-	if (a > '9' && a < 'A')
+	else if (c > '9' && c < 'A')
 		return (0);
-	if ((a > 'Z' && a < 'a') || (a > 'z'))
+	else if ((c > 'Z' && c < 'a') || (c > 'z'))
 		return (0);
 	return (1);
 }
 
 char	*ft_strcapitalize(char *str)
 {
-	int i;
+	char *ptr;
 
-	while (str[i])
+	ptr = str;
+	while (*ptr)
 	{
-		if (i == 0)
+		if (ptr == str)
 		{
-			if (str[i] >= 'a' && str[i] <= 'z')
-				str[i] = str[i] - 32;
+			if (*ptr <= 'z' && *ptr >= 'a')
+				*ptr -= 32;
 		}
-		else if (capitalize(str[i - 1]) == 0)
+		else if (capitalize(*(ptr - 1)) == 0)
 		{
-			if (str[i] >= 'a' && str[i] <= 'z')
-				str[i] = str[i] - 32;
+			if (*ptr <= 'z' && *ptr >= 'a')
+				*ptr -= 32;
 		}
-		else if (str[i] >= 'A' && str[i] <= 'Z')
+		else if ((*ptr >= 'A') && (*ptr <= 'Z'))
 		{
-			str[i] = str[i] + 32;
+			*ptr += 32;
 		}
-		i++;
+		ptr++;
 	}
 	return (str);
 }
